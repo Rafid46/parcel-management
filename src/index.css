@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Poppins:wght@100;300;600;700&family=Roboto:wght@100;300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS */
+.coolBeans {
+  /* border: 1px solid; */
+  color: #02c39a;
+  background-color: transparent;
+  overflow: hidden;
+  padding: 10px 25px;
+  position: relative;
+  /* transition: 0.2s transform ease-in-out;
+  will-change: transform; */
+  z-index: 0;
+}
+
+.coolBeans::after {
+  background-color: #02c39a;
+  /* border-radius: 3rem; */
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-100%, 0) rotate(60deg);
+  transform-origin: top left;
+  transition: 0.3s transform ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.coolBeans:hover::after {
+  transform: translate(0, 0);
+}
+
+.coolBeans:hover {
+  /* border: 2px solid transparent; */
+  transform: scale(1.05);
+  will-change: transform; /* This line is already correct. No need to change it. */
+}
+/*  */
+.buttom {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.buttom:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.buttom:active {
+  transform: translateY(-1px);
+}
+
+/* typing animation */
+:root {
+  --steps: 16;
+}
+
+.typing {
+  /* Text style */
+  /* Core styles */
+  position: relative;
+  &::after {
+    content: "|";
+    position: absolute;
+    right: 0;
+    width: 100%;
+    color: rgb(2, 2, 2);
+    background: rgb(255, 255, 255);
+    animation: typing 4s steps(var(--steps)) infinite; /* Use infinite to make it repeat */
+  }
+}
+
+/* Animation */
+@keyframes typing {
+  to {
+    width: 0;
+  }
+}
+/*  */
+
+.typed {
+  overflow: hidden;
+  white-space: nowrap;
+  /* content: "|"; */
+  /* border-right: 3px solid black; */
+  animation: typing steps(var(--steps)) infinite;
+  animation-duration: 4s;
+  /* animation-timing-function: steps(30, end); */
+  /* animation-fill-mode: forwards infinite; */
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+/* footer */
+.new_footer_area {
+  background: #fbfbfd;
+}
+
+.new_footer_top {
+  padding: 120px 0px 180px;
+  position: relative;
+  overflow-x: hidden;
+}
+.new_footer_area .footer_bottom {
+  padding-top: 5px;
+  padding-bottom: 50px;
+}
+/* .footer_bottom {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  color: #7f88a6;
+  padding: 27px 0px;
+}
+.new_footer_top .company_widget p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+  color: #6a7695;
+  margin-bottom: 20px;
+}
+.new_footer_top .company_widget .f_subscribe_two .btn_get {
+  border-width: 1px;
+  margin-top: 20px;
+}
+.btn_get_two:hover {
+  background: transparent;
+  color: #5e2ced;
+}
+.btn_get:hover {
+  color: #fff;
+  background: #6754e2;
+  border-color: #6754e2;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.new_footer_top .f_widget.about-widget .f_list li a:hover {
+  color: #5e2ced;
+}
+.new_footer_top .f_widget.about-widget .f_list li {
+  margin-bottom: 11px;
+}
+.f_widget.about-widget .f_list li:last-child {
+  margin-bottom: 0px;
+}
+.f_widget.about-widget .f_list li {
+  margin-bottom: 15px;
+}
+.f_widget.about-widget .f_list {
+  margin-bottom: 0px;
+}
+.f_600 {
+  font-weight: 600;
+}
+.f_size_18 {
+  font-size: 18px;
+}
+.new_footer_top .f_widget.about-widget .f_list li a {
+  color: #6a7695;
+} */
+
+.new_footer_top .footer_bg {
+  position: absolute;
+  bottom: 0;
+  background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png")
+    no-repeat scroll center 0;
+  width: 100%;
+  height: 266px;
+}
+
+.new_footer_top .footer_bg .footer_bg_one {
+  background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif")
+    no-repeat center center;
+  width: 330px;
+  height: 105px;
+  background-size: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  -webkit-animation: myfirst 22s linear infinite;
+  animation: myfirst 22s linear infinite;
+}
+
+.new_footer_top .footer_bg .footer_bg_two {
+  background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif")
+    no-repeat center center;
+  width: 88px;
+  height: 100px;
+  background-size: 100%;
+  bottom: 0;
+  left: 38%;
+  position: absolute;
+  -webkit-animation: myfirst 30s linear infinite;
+  animation: myfirst 30s linear infinite;
+}
+
+@-moz-keyframes myfirst {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@-webkit-keyframes myfirst {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes myfirst {
+  0% {
+    left: -25%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+/* footer end */
+
+/*new button  */
+.butto {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--clr);
+  color: #fff;
+  border-radius: 10rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  padding-left: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s;
+}
+
+.button__icon-wrapper {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  color: var(--clr);
+  background-color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.butto:hover {
+  background-color: #000;
+}
+
+.butto:hover .button__icon-wrapper {
+  color: #000;
+}
+
+.button__icon-svg--copy {
+  position: absolute;
+  transform: translate(-150%, 150%);
+}
+
+.butto:hover .button__icon-svg:first-child {
+  transition: transform 0.3s ease-in-out;
+  transform: translate(150%, -150%);
+}
+
+.butto:hover .button__icon-svg--copy {
+  transition: transform 0.3s ease-in-out 0.1s;
+  transform: translate(0);
+}
