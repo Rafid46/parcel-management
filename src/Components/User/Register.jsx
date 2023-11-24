@@ -1,69 +1,82 @@
-/* eslint-disable react/no-unknown-property */
 import Lottie from "lottie-react";
-import loginAni from "../../assets/GfbjB5rWHc.json";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import signUpAni from "../../assets/Animation - 1700820136096.json";
 import logo from "../../assets/logo.png";
+import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-const Login = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-  const { signIn, googleSignIn } = useContext(AuthContext);
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    // console.log(email, password);
-    // console.log(form);
-    signIn(email, password).then((result) => {
-      const user = result.user;
-      // console.log(user);
-      <div className="alert alert-success">
-        <span>Message sent successfully.</span>
-      </div>;
-      //   navigate(from, { replace: true });
-    });
-  };
-  const handleGoogleSignIn = () => {
-    googleSignIn().then((result) => {
-      console.log(result.user);
-      navigate(from, { replace: true });
-      //   const userInfo = {
-      //     email: result.user?.email,
-      //     name: result.user?.displayName,
-      //   };
-      //   axiosPublic.post("/users", userInfo).then((res) => {
-      //     // console.log(res.data);
-      //     navigate("/");
-      //   });
-      //   swal("Good job!", "logged in successfully", "success");
+
+const Register = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      updateUserProfile(data.name, data.photoURL).then(() => {
+        // console.log("user profile updated");
+        // const userInfo = {
+        //   name: data.name,
+        //   email: data.email,
+        // };
+        reset();
+      });
+      console.log(loggedUser);
     });
   };
   return (
     <div>
       <section className="max-w-screen-xl mx-auto">
         <div className="flex items-center justify-center">
-          <p className="text-center text-5xl font-bold mr-5">Login</p>
-          {/* <img className="w-[75px]" src={logo} alt="" /> */}
+          <p className="text-center text-5xl font-bold mr-5">
+            Welcome to Swift
+          </p>
+          <img className="w-[75px]" src={logo} alt="" />
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between items-center">
-          <section className="w-[500px]">
-            <Lottie animationData={loginAni} loop={true}></Lottie>
+          <section className="w-[700px]">
+            <Lottie animationData={signUpAni} loop={true}></Lottie>
           </section>
           <main className="">
             <div className="">
-              <form onSubmit={handleLogin} className="">
+              <form onSubmit={handleSubmit(onSubmit)} className="">
+                <div className="mb-5">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Name
+                  </label>
+                  <input
+                    placeholder="name"
+                    {...register("name")}
+                    type="text"
+                    className="mt-1 w-60  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+                <div className="mb-5">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Your photo
+                  </label>
+                  <input
+                    placeholder="photo"
+                    {...register("photoURL")}
+                    type="text"
+                    className="mt-1 w-60  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
                 <div className="mb-5">
                   <label className="block text-sm font-medium text-gray-700">
                     Email
                   </label>
 
                   <input
+                    placeholder="email"
                     type="email"
-                    name="email"
+                    {...register("email")}
                     className="mt-1 w-60  rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -74,22 +87,23 @@ const Login = () => {
                   </label>
 
                   <input
+                    placeholder="password"
+                    {...register("password")}
                     type="password"
-                    name="password"
                     className="mt-1 w-60 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
 
                 <div className="mb-5">
-                  <button className="inline-block shrink-0 rounded-md border  bg-[#02c39a] px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                    Login
+                  <button className="inline-block shrink-0 rounded-md border  bg-blue-500 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+                    Sign Up
                   </button>
                 </div>
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                  Do not have an account?
-                  <Link to="/register">
+                  Already have an account?
+                  <Link to="/login">
                     <span className="cursor-pointer hover:text-blue-600 ml-2 text-gray-700 underline">
-                      Register
+                      Login
                     </span>
                   </Link>
                 </p>
@@ -124,9 +138,7 @@ const Login = () => {
                       </clipPath>
                     </defs>
                   </svg>
-                  <button onClick={handleGoogleSignIn}>
-                    Sign in with Google
-                  </button>
+                  <span>Sign in with Google</span>
                 </button>
               </form>
             </div>
@@ -137,4 +149,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

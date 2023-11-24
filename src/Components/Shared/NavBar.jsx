@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 const nextVariants = {
   hidden: {
     x: "-100vw",
@@ -26,6 +28,14 @@ const containerVariants = {
   },
 };
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const links = (
     <motion.div
       variants={containerVariants}
@@ -80,6 +90,7 @@ const NavBar = () => {
               </motion.div>
             </Link>
           </li>
+          <li></li>
         </nav>
       </div>
     </motion.div>
@@ -124,67 +135,36 @@ const NavBar = () => {
         <div className="navbar hidden  lg:flex">
           <ul className="menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-center">
-          {/* <label
-            tabIndex={0}
-            className="btn btn-ghost btn-circle avatar"
-          ></label> */}
-          {/* {user ? (
-            <div>
-              <details className="dropdown">
-                <summary className="">
-                  <img
-                    className="rounded-full w-[40px] h-[40px] mr-2 mb-5"
-                    src={user.photoURL}
-                  />
+        <div className="ml-56 lg:ml-0">
+          {user ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <summary tabIndex={0} className="btn btn-ghost rounded-btn">
+                  <div className="avatar">
+                    <div className="w-8 rounded-full ring ring-green-500 ring-offset-base-100 ring-offset-2">
+                      <img src={user?.photoURL} />
+                    </div>
+                  </div>
                 </summary>
-
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                  className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
                 >
-                  <li className="text-gray-500 hover:text-orange-500 hover:bg-gray-300">
-                    <Link to="/myAddedFood">
-                      <a>My added food items</a>
-                    </Link>
+                  <li>
+                    <a className="cursor-not-allowed">{user?.displayName}</a>
                   </li>
-
-                  <li className="text-gray-500  hover:text-orange-500 hover:bg-gray-300">
-                    <Link to="/addProduct">
-                      <a>Add a food item</a>
-                    </Link>
+                  <li>
+                    <a>Dashboard</a>
                   </li>
-
-                  <li className="text-gray-500  hover:text-orange-500 hover:bg-gray-300">
-                    <Link to="/myOrderedFood">
-                      <a>My ordered food items</a>
-                    </Link>
+                  <li>
+                    <button onClick={handleLogOut}>Logout</button>
                   </li>
                 </ul>
-              </details>
-              <p className="text-2xl font-thin text-white mr-2">
-                {user.displayName}
-              </p>
-              <button
-                onClick={handleSignOut}
-                className="btn rounded-none coolBeans hover:text-orange-500"
-              >
-                L O G O U T
-              </button>
-            </div>
+              </div>
+            </>
           ) : (
-            <motion.div
-              variants={nextVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Link to="/login">
-                <button className="btn coolBeans rounded-none hover:text-orange-500">
-                  L o g i n
-                </button>
-              </Link>
-            </motion.div>
-          )} */}
+            <></>
+          )}
         </div>
       </div>
     </div>
