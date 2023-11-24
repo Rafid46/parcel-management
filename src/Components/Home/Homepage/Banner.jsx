@@ -50,13 +50,11 @@ const Banner = () => {
           <button></button>
         </div>
         <motion.div
-          initial={{ opacity: 0, x: -100 }} // Initial state of the component
-          animate={{ opacity: 1, x: 0 }} // Animation state
-          exit={{ opacity: 0, x: -100 }} // Exit state
+          initial={{ opacity: 0, scale: 2 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
-            ease: "linear",
-            duration: 2,
-            x: { duration: 1 },
+            duration: 0.5,
+            delay: 0.7,
           }}
         >
           <img className="w-[600px]" src={banner} alt="" />

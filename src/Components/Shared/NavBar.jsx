@@ -35,7 +35,7 @@ const NavBar = () => {
     >
       <div className="">
         <nav className="flex flex-col md:flex-row lg:flex-row items-center justify-between">
-          <li className="text-xl mr-20 font-semibold text-[#02c39a]">
+          <li className="text-xl mr-10 font-semibold text-[#02c39a]">
             <NavLink
               to="/"
               className={({ isActive, isPending }) =>
@@ -45,7 +45,7 @@ const NavBar = () => {
               HOME
             </NavLink>
           </li>
-          <li className="text-xl mr-20 font-semibold text-[#02c39a]">
+          <li className="text-xl mr-10 font-semibold text-[#02c39a]">
             <NavLink
               to="/"
               className={({ isActive, isPending }) =>
@@ -55,7 +55,7 @@ const NavBar = () => {
               DASHBOARD
             </NavLink>
           </li>
-          <li className="text-3xl mr-20 font-semibold text-[#02c39a] transform transition-transform duration-300 hover:rotate-45">
+          <li className="text-3xl mr-10 font-semibold text-[#02c39a] transform transition-transform duration-300 hover:rotate-45">
             <NavLink
               to="/"
               className={({ isActive, isPending }) =>
@@ -66,17 +66,19 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
-            <motion.div
-              variants={nextVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Link to="/login">
-                <button className="text-sm lg:text-xl font-semibold hover:bg-transparent coolBeans rounded-none hover:text-white">
-                  L o g i n
-                </button>
-              </Link>
-            </motion.div>
+            <Link to="/login">
+              <motion.div
+                variants={nextVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Link to="/login">
+                  <button className="right-4 text-sm lg:text-xl font-semibold hover:bg-transparent coolBeans rounded-none hover:text-white">
+                    L o g i n
+                  </button>
+                </Link>
+              </motion.div>
+            </Link>
           </li>
         </nav>
       </div>
@@ -105,7 +107,7 @@ const NavBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content flex items-center justify-center z-[1] shadow bg-gray-900 rounded-box w-[200px] text-xl"
+              className="menu menu-sm p-5 dropdown-content flex items-center justify-center z-[1] shadow bg-gray-900 rounded-box w-fit text-xl"
             >
               {links}
             </ul>
@@ -122,7 +124,7 @@ const NavBar = () => {
         <div className="navbar hidden  lg:flex">
           <ul className="menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-center">
           {/* <label
             tabIndex={0}
             className="btn btn-ghost btn-circle avatar"
