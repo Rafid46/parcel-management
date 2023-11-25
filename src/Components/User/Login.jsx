@@ -2,12 +2,14 @@
 import Lottie from "lottie-react";
 import loginAni from "../../assets/GfbjB5rWHc.json";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
+// import logo from "../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
   const from = location.state?.from?.pathname || "/";
   const { signIn, googleSignIn } = useContext(AuthContext);
   const handleLogin = (e) => {
@@ -29,15 +31,15 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
       console.log(result.user);
-      navigate(from, { replace: true });
-      //   const userInfo = {
-      //     email: result.user?.email,
-      //     name: result.user?.displayName,
-      //   };
-      //   axiosPublic.post("/users", userInfo).then((res) => {
-      //     // console.log(res.data);
-      //     navigate("/");
-      //   });
+      //   navigate(from, { replace: true });
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+        navigate("/");
+      });
       //   swal("Good job!", "logged in successfully", "success");
     });
   };
@@ -50,10 +52,14 @@ const Login = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between items-center">
-          <section className="w-[500px]">
+          <section
+            className="w-[500px]"
+            data-aos="zoom-out"
+            data-aos-delay="100"
+          >
             <Lottie animationData={loginAni} loop={true}></Lottie>
           </section>
-          <main className="">
+          <main className="" data-aos="zoom-out" data-aos-delay="400">
             <div className="">
               <form onSubmit={handleLogin} className="">
                 <div className="mb-5">

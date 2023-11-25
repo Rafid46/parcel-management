@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "alpinejs": "^3.13.3",
+    "aos": "^2.3.4",
     "axios": "^1.6.2",
     "firebase": "^10.6.0",
     "flowbite": "^2.2.0",
@@ -19,6 +20,7 @@
     "localforage": "^1.10.0",
     "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.1",
+    "mongoose": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",

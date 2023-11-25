@@ -9,7 +9,9 @@ const MainLayout = () => {
         <NavBar></NavBar>
       </div>
       <Outlet></Outlet>
-      <Footer></Footer>
+      <div className="mt-20">
+        <Footer></Footer>
+      </div>
     </div>
   );
 };

@@ -1,13 +1,16 @@
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import signUpAni from "../../assets/Animation - 1700820136096.json";
 import logo from "../../assets/logo.png";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,11 +23,17 @@ const Register = () => {
       const loggedUser = result.user;
       updateUserProfile(data.name, data.photoURL).then(() => {
         // console.log("user profile updated");
-        // const userInfo = {
-        //   name: data.name,
-        //   email: data.email,
-        // };
-        reset();
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log("user added");
+            reset();
+            navigate("/");
+          }
+        });
       });
       console.log(loggedUser);
     });
@@ -40,10 +49,14 @@ const Register = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between items-center">
-          <section className="w-[700px]">
+          <section
+            className="w-[700px]"
+            data-aos="zoom-out"
+            data-aos-delay="100"
+          >
             <Lottie animationData={signUpAni} loop={true}></Lottie>
           </section>
-          <main className="">
+          <main className="" data-aos="zoom-out" data-aos-delay="300">
             <div className="">
               <form onSubmit={handleSubmit(onSubmit)} className="">
                 <div className="mb-5">
