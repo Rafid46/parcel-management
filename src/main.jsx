@@ -8,8 +8,15 @@ import Login from "./Components/User/Login";
 import AuthProvider from "./Components/Provider/AuthProvider";
 import Register from "./Components/User/Register";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import Users from "../src/Components/Dashboard/Dashboard-pages/Users";
-import Report from "./Components/Dashboard/Dashboard-pages/Report";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+const queryClient = new QueryClient();
+import AllUsers from "./Components/Dashboard/allUsers";
+import PrivateRoute from "./Components/Routes/PrivateRoute";
+import BookParcel from "./Components/Dashboard/UserDashboard/BookParcel";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,16 +29,22 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: "users",
-        element: <Users></Users>,
+        path: "bookParcel",
+        element: <BookParcel></BookParcel>,
       },
+      // admin
       {
-        path: "report",
-        element: <Report></Report>,
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
       },
+      {},
     ],
   },
 ]);
@@ -39,7 +52,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>
 );

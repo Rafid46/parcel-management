@@ -26,6 +26,7 @@ const Register = () => {
         const userInfo = {
           name: data.name,
           email: data.email,
+          photoURL: data.photoURL,
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           if (res.data.insertedId) {
@@ -100,8 +101,8 @@ const Register = () => {
                   </label>
 
                   <input
-                    placeholder="password"
                     {...register("password")}
+                    placeholder="password"
                     type="password"
                     className="mt-1 w-60 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
