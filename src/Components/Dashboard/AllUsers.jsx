@@ -13,11 +13,9 @@ const AllUsers = () => {
   });
   const handleAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire(`${user.name} is an admin`);
-      }
+      console.log(res);
+      refetch();
+      Swal.fire(`${user.name} is an admin`);
     });
   };
   return (
@@ -103,10 +101,9 @@ const AllUsers = () => {
                         </th>
                       </tr>
                     </thead>
-                    {/* main table */}
-                    {users.map((users, index) => (
+                    {users.map((user, index) => (
                       <tbody
-                        key={users._id}
+                        key={user._id}
                         className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900"
                       >
                         <tr>
@@ -124,15 +121,15 @@ const AllUsers = () => {
                             <div className="flex items-center gap-x-2">
                               <img
                                 className="object-cover w-8 h-8 rounded-full"
-                                src={users.photoURL}
+                                src={user.photoURL}
                                 alt=""
                               />
                               <div>
                                 <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
-                                  {users.name}
+                                  {user.name}
                                 </h2>
                                 <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                                  {users.email}
+                                  {user.email}
                                 </p>
                               </div>
                             </div>
@@ -155,11 +152,11 @@ const AllUsers = () => {
                                   stroke-linejoin="round"
                                 />
                               </svg>
-                              {users.role === "admin" ? (
+                              {user.role === "admin" ? (
                                 "Admin"
                               ) : (
                                 <button
-                                  onClick={() => handleAdmin(users)}
+                                  onClick={() => handleAdmin(user)}
                                   className="text-2xl font-normal cursor-pointer"
                                 >
                                   <MdOutlineAdminPanelSettings />

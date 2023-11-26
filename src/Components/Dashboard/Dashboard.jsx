@@ -14,8 +14,8 @@ const Dashboard = () => {
   return (
     <div className="flex">
       {isAdmin ? (
-        <>
-          <aside className="flex flex-col w-64  px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+        <div className="">
+          <aside className="flex flex-col w-64  h-full px-5 py-8 overflow-y-auto bg-gray-900">
             <a className="flex">
               <img className="w-auto h-7 mr-5" src={logo} alt="" />
               <p className="text-white font-bold font-poppins">SWIFT</p>
@@ -182,10 +182,10 @@ const Dashboard = () => {
             </div>
           </aside>
           <hr />
-        </>
+        </div>
       ) : (
         <>
-          <aside className="flex flex-col w-64 px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+          <aside className="flex  h-screen flex-col w-64 px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
             <a className="flex">
               <img className="w-auto h-7 mr-5" src={logo} alt="" />
               <p className="text-white font-bold font-poppins">SWIFT</p>
@@ -324,7 +324,6 @@ const Dashboard = () => {
         </>
       )}
 
-      <div></div>
       <div className="flex-1 ml-10 mt-10">
         <Outlet></Outlet>
       </div>

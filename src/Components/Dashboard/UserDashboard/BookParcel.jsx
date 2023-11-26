@@ -1,9 +1,23 @@
 import Lottie from "lottie-react";
 import ani from "../../../assets/yAUYFslg6U.json";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 const BookParcel = () => {
   const { user } = useContext(AuthContext);
+  const [parcelWeight, setParcelWeight] = useState(1);
+  const [price, setPrice] = useState(50);
+  const calculatePrice = (e) => {
+    if (parcelWeight === 1) {
+      setPrice(50);
+    } else if (parcelWeight === 2) {
+      setPrice(100);
+    } else if (parcelWeight > 2) {
+      setPrice(150 * parcelWeight);
+    } else {
+      // Handle invalid input or default case
+      setPrice(0);
+    }
+  };
   return (
     <div>
       <div>
@@ -41,6 +55,7 @@ const BookParcel = () => {
                       type="text"
                       placeholder={user.displayName}
                       value={user.displayName}
+                      readOnly
                       id="FirstName"
                       name="first_name"
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
@@ -61,6 +76,7 @@ const BookParcel = () => {
                       name="last_name"
                       placeholder={user.email}
                       value={user.email}
+                      readOnly
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -90,6 +106,8 @@ const BookParcel = () => {
                     <input
                       type="number"
                       id="LastName"
+                      value={price}
+                      readOnly
                       name="last_name"
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
@@ -121,6 +139,11 @@ const BookParcel = () => {
                       type="number"
                       id="LastName"
                       name="last_name"
+                      value={parcelWeight}
+                      onChange={(e) => {
+                        setParcelWeight(parseInt(e.target.value));
+                        calculatePrice();
+                      }}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
