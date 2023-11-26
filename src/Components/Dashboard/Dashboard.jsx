@@ -15,7 +15,7 @@ const Dashboard = () => {
     <div className="flex">
       {isAdmin ? (
         <div className="">
-          <aside className="flex flex-col w-64  h-full px-5 py-8 overflow-y-auto bg-gray-900">
+          <aside className="flex h-full flex-col w-64 px-5 py-8 bg-gray-900">
             <a className="flex">
               <img className="w-auto h-7 mr-5" src={logo} alt="" />
               <p className="text-white font-bold font-poppins">SWIFT</p>
@@ -184,8 +184,8 @@ const Dashboard = () => {
           <hr />
         </div>
       ) : (
-        <>
-          <aside className="flex  h-screen flex-col w-64 px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+        <div className="">
+          <aside className="flex  h-screen flex-col w-64 px-5 py-8 overflow-y-auto bg-gray-900">
             <a className="flex">
               <img className="w-auto h-7 mr-5" src={logo} alt="" />
               <p className="text-white font-bold font-poppins">SWIFT</p>
@@ -321,10 +321,10 @@ const Dashboard = () => {
               </div>
             </div>
           </aside>
-        </>
+        </div>
       )}
 
-      <div className="flex-1 ml-10 mt-10">
+      <div className="flex-1">
         <Outlet></Outlet>
       </div>
     </div>

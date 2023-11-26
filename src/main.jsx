@@ -17,6 +17,7 @@ const queryClient = new QueryClient();
 import AllUsers from "./Components/Dashboard/allUsers";
 import PrivateRoute from "./Components/Routes/PrivateRoute";
 import BookParcel from "./Components/Dashboard/UserDashboard/BookParcel";
+import MyParcels from "./Components/Dashboard/UserDashboard/MyParcels";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,9 +36,14 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // user
       {
         path: "bookParcel",
         element: <BookParcel></BookParcel>,
+      },
+      {
+        path: "myParcels",
+        element: <MyParcels></MyParcels>,
       },
       // admin
       {

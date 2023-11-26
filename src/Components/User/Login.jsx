@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,9 +23,8 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       // console.log(user);
-      <div className="alert alert-success">
-        <span>Message sent successfully.</span>
-      </div>;
+      Swal("Good job!", "logged in successfully", "success");
+      navigate(from, { replace: true });
       //   navigate(from, { replace: true });
     });
   };

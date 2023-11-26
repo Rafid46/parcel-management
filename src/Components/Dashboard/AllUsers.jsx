@@ -15,16 +15,18 @@ const AllUsers = () => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
       console.log(res);
       refetch();
-      Swal.fire(`${user.name} is an admin`);
+      Swal.fire(`${user.name} is now an admin`);
+    });
+  };
+  const handleDeliveryMan = (user) => {
+    axiosSecure.patch(`/users/deliveryMan/${user._id}`).then((res) => {
+      console.log(res);
+      refetch();
+      Swal.fire(`${user.name} is now an delivery man`);
     });
   };
   return (
-    <div>
-      <div>
-        <p>All Users</p>
-        <p>{users.length}</p>
-        <p>{users.displayName}</p>
-      </div>
+    <div className="mt-10">
       <div>
         <section className="container px-4 mx-auto">
           <div className="flex flex-col">
@@ -153,13 +155,13 @@ const AllUsers = () => {
                                 />
                               </svg>
                               {user.role === "admin" ? (
-                                "Admin"
+                                "admin"
                               ) : (
                                 <button
                                   onClick={() => handleAdmin(user)}
-                                  className="text-2xl font-normal cursor-pointer"
+                                  className="text-sm font-semibold cursor-pointer"
                                 >
-                                  <MdOutlineAdminPanelSettings />
+                                  {user.role}
                                 </button>
                               )}
                             </div>
@@ -184,8 +186,16 @@ const AllUsers = () => {
                                   stroke-linejoin="round"
                                 />
                               </svg>
-
-                              <h2 className="text-sm font-normal">Paid</h2>
+                              {user.role === "deliveryMan" ? (
+                                "delivery man"
+                              ) : (
+                                <button
+                                  onClick={() => handleDeliveryMan(user)}
+                                  className="text-sm font-semibold cursor-pointer"
+                                >
+                                  {user.role}
+                                </button>
+                              )}
                             </div>
                           </td>
                         </tr>

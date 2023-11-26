@@ -2,10 +2,14 @@ import Lottie from "lottie-react";
 import ani from "../../../assets/yAUYFslg6U.json";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 const BookParcel = () => {
   const { user } = useContext(AuthContext);
   const [parcelWeight, setParcelWeight] = useState(1);
   const [price, setPrice] = useState(50);
+  const axiosPublic = useAxiosPublic();
   const calculatePrice = (e) => {
     if (parcelWeight === 1) {
       setPrice(50);
@@ -17,6 +21,35 @@ const BookParcel = () => {
       // Handle invalid input or default case
       setPrice(0);
     }
+  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    const userData = {
+      name: data.name,
+      email: data.email,
+      number: data.number,
+      price: data.price,
+      parcelType: data.parcelType,
+      parcelWeight: data.parcelWeight,
+      receiverName: data.receiverName,
+      receiverNumber: data.receiverNumber,
+      address: data.address,
+      requestedDeliveryDate: data.requestedDeliveryDate,
+      bookingDate: data.bookingDate,
+      deliveryAddressLat: data.deliveryAddressLat,
+      deliveryAddressLong: data.deliveryAddressLong,
+      status: data.status,
+    };
+    axiosPublic.post("/bookParcel", userData).then((res) => {
+      console.log(res.data, "user added");
+      reset(), Swal.fire("parcel booked");
+    });
   };
   return (
     <div>
@@ -42,7 +75,10 @@ const BookParcel = () => {
                   </div>
                 </section>
 
-                <form className="mt-8 grid grid-cols-6 gap-6">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="mt-8 grid grid-cols-6 gap-6"
+                >
                   <div className="w-96 col-span-6 sm:col-span-3">
                     <label
                       htmlFor="FirstName"
@@ -53,11 +89,11 @@ const BookParcel = () => {
 
                     <input
                       type="text"
+                      {...register("name")}
                       placeholder={user.displayName}
                       value={user.displayName}
                       readOnly
                       id="FirstName"
-                      name="first_name"
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -73,7 +109,7 @@ const BookParcel = () => {
                     <input
                       type="text"
                       id="LastName"
-                      name="last_name"
+                      {...register("email")}
                       placeholder={user.email}
                       value={user.email}
                       readOnly
@@ -91,7 +127,7 @@ const BookParcel = () => {
                     <input
                       type="number"
                       id="LastName"
-                      name="last_name"
+                      {...register("number")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -108,7 +144,7 @@ const BookParcel = () => {
                       id="LastName"
                       value={price}
                       readOnly
-                      name="last_name"
+                      {...register("price")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -117,13 +153,13 @@ const BookParcel = () => {
                       htmlFor="LastName"
                       className="block text-sm font-medium text-gray-700"
                     >
-                      Parcel number
+                      Parcel Type
                     </label>
 
                     <input
-                      type="number"
+                      type="text"
                       id="LastName"
-                      name="last_name"
+                      {...register("parcelType")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -138,7 +174,7 @@ const BookParcel = () => {
                     <input
                       type="number"
                       id="LastName"
-                      name="last_name"
+                      {...register("parcelWeight")}
                       value={parcelWeight}
                       onChange={(e) => {
                         setParcelWeight(parseInt(e.target.value));
@@ -158,7 +194,7 @@ const BookParcel = () => {
                     <input
                       type="text"
                       id="LastName"
-                      name="last_name"
+                      {...register("receiverName")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -173,7 +209,7 @@ const BookParcel = () => {
                     <input
                       type="text"
                       id="LastName"
-                      name="last_name"
+                      {...register("receiverNumber")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -188,7 +224,22 @@ const BookParcel = () => {
                     <input
                       type="text"
                       id="LastName"
-                      name="last_name"
+                      {...register("address")}
+                      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    />
+                  </div>
+                  <div className="col-span-6 w-96 sm:col-span-3">
+                    <label
+                      htmlFor="LastName"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Booking Date
+                    </label>
+
+                    <input
+                      type="date"
+                      id="LastName"
+                      {...register("bookingDate")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -203,7 +254,7 @@ const BookParcel = () => {
                     <input
                       type="date"
                       id="LastName"
-                      name="last_name"
+                      {...register("requestedDeliveryDate")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -218,7 +269,7 @@ const BookParcel = () => {
                     <input
                       type="text"
                       id="LastName"
-                      name="last_name"
+                      {...register("deliveryAddressLat")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -233,7 +284,23 @@ const BookParcel = () => {
                     <input
                       type="text"
                       id="LastName"
-                      name="last_name"
+                      {...register("deliveryAddressLong")}
+                      className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                    />
+                  </div>
+                  <div className="col-span-6 w-96 sm:col-span-3">
+                    <label
+                      htmlFor="LastName"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Status
+                    </label>
+                    <input
+                      type="text"
+                      value={"pending"}
+                      placeholder="pending"
+                      readOnly
+                      {...register("status")}
                       className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                     />
                   </div>
