@@ -44,7 +44,7 @@ const MyProfile = () => {
         <div className="w-full max-w-md px-8 py-4  bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <div className="flex justify-center -mt-16 md:justify-end">
             <img
-              className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400"
+              className="object-cover w-28 h-28 border-2 border-blue-500 rounded-full dark:border-blue-400"
               alt="Testimonial avatar"
               src={list?.photoURL}
             />
@@ -62,9 +62,9 @@ const MyProfile = () => {
               type="text"
               placeholder="your image"
               {...register("photoURL")}
-              className="mb-2 mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+              className="mb-2 mt-1 w-full rounded-sm border-gray-200 shadow-sm sm:text-sm"
             />
-            <button className="btn">Update</button>
+            <button className="btn rounded-sm">Update</button>
           </form>
         </div>
       </div>

@@ -22,6 +22,7 @@ import MyProfile from "../src/Components/Dashboard/UserDashboard/MyProfile";
 import AllParcels from "./Components/Dashboard/Admin/AllParcels";
 import AllDeliveryMan from "./Components/Dashboard/Admin/AllDeliveryMan";
 import UpdateProfile from "./Components/Dashboard/UserDashboard/UpdateProfile";
+import Statistics from "./Components/Dashboard/Admin/Statistics";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "allDeliveryman",
         element: <AllDeliveryMan></AllDeliveryMan>,
+      },
+      {
+        path: "statistics",
+        element: <Statistics></Statistics>,
       },
     ],
   },

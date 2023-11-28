@@ -22,7 +22,7 @@ const MyParcels = () => {
   console.log(parcels);
   return (
     <div className="">
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-screen">
         <p className="text-4xl font-bold mb-20 mt-20 text-blue-950">
           My Parcels
         </p>

@@ -3,14 +3,16 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { MdOutlineSystemUpdate } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const AllParcels = () => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/bookParcel");
-      refetch();
       return res.data;
     },
   });
@@ -29,7 +31,7 @@ const AllParcels = () => {
       Swal.fire("status updated");
     });
   };
-
+  // update
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -38,7 +40,7 @@ const AllParcels = () => {
       deliveryMan,
     };
     console.log(man);
-    axiosSecure.patch(`/bookParcel/${users.id}`, man).then((res) => {
+    axiosSecure.patch(`/bookParcel/${user._id}`, man).then((res) => {
       console.log(man.id);
       refetch();
       Swal.fire("delivery man added");
@@ -48,7 +50,7 @@ const AllParcels = () => {
   return (
     <div>
       <div className="">
-        <section className="container px-4 mx-auto mt-10">
+        <section className="container px-4 mx-auto mt-10 h-screen">
           <div className="flex flex-col">
             <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
