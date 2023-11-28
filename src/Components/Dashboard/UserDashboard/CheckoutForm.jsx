@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-
+import Swal from "sweetalert2";
 const CheckoutForm = () => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -12,7 +12,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const { data: parcels = [] } = useQuery({
+  const { data: parcels = [], refetch } = useQuery({
     queryKey: ["parcels"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/bookParcel/?email=${user?.email}`);
@@ -70,6 +70,20 @@ const CheckoutForm = () => {
       if (paymentIntent.status === "succeeded") {
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          date: new Date(),
+          parcelId: parcels.map((item) => item._id),
+          status: "pending",
+        };
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("payment saved", res);
+        if (res.data?.paymentResult?.transactionId) {
+          refetch();
+          Swal.fire("SuccessFully Submitted");
+        }
       }
     }
   };

@@ -306,3 +306,27 @@
   transform: translate(0);
 }
 /* black search */
+/* .App {
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 50px;
+}
+
+.App {
+  display: flex;
+  gap: 10rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.imageslider {
+  margin: 50px;
+  align-self: center;
+}
+.typeanimation {
+  align-self: center;
+}
+.slide-container {
+  width: 500px;
+  height: auto;
+} */

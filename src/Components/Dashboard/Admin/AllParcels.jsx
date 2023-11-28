@@ -2,13 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { MdOutlineSystemUpdate } from "react-icons/md";
 import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
 
 const AllParcels = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
