@@ -18,6 +18,10 @@ import AllUsers from "./Components/Dashboard/allUsers";
 import PrivateRoute from "./Components/Routes/PrivateRoute";
 import BookParcel from "./Components/Dashboard/UserDashboard/BookParcel";
 import MyParcels from "./Components/Dashboard/UserDashboard/MyParcels";
+import MyProfile from "../src/Components/Dashboard/UserDashboard/MyProfile";
+import AllParcels from "./Components/Dashboard/Admin/AllParcels";
+import AllDeliveryMan from "./Components/Dashboard/Admin/AllDeliveryMan";
+import UpdateProfile from "./Components/Dashboard/UserDashboard/UpdateProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,13 +49,31 @@ const router = createBrowserRouter([
         path: "myParcels",
         element: <MyParcels></MyParcels>,
       },
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>,
+      },
+
       // admin
       {
         path: "allUsers",
         element: <AllUsers></AllUsers>,
       },
-      {},
+      {
+        path: "allParcels",
+        element: <AllParcels></AllParcels>,
+      },
+      {
+        path: "allDeliveryman",
+        element: <AllDeliveryMan></AllDeliveryMan>,
+      },
     ],
+  },
+  {
+    path: "/update/:id",
+    element: <UpdateProfile></UpdateProfile>,
+    // loader: ({ params }) =>
+    //   fetch(`http://localhost:5020/health/update/${params.id}`),
   },
 ]);
 
