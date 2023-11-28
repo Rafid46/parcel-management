@@ -21,8 +21,8 @@ const MyParcels = () => {
   });
   console.log(parcels);
   return (
-    <div className="">
-      <div className="flex items-center justify-center h-screen">
+    <div className="h-screen">
+      <div className="flex items-center justify-center">
         <p className="text-4xl font-bold mb-20 mt-20 text-blue-950">
           My Parcels
         </p>
@@ -30,6 +30,14 @@ const MyParcels = () => {
           <Lottie animationData={Ani} loop={true}></Lottie>
         </div>
       </div>
+      <Link
+        to="/dashboard/payment"
+        className="flex items-center justify-center mb-10"
+      >
+        <button className="px-5 py-2 text-lg font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">
+          PAY
+        </button>
+      </Link>
       <div className="font-poppins grid grid-cols-1 lg:grid-cols-2 gap-6">
         {parcels.map((parcel) => (
           <div className="flex items-center justify-center">
@@ -81,18 +89,13 @@ const MyParcels = () => {
                       Update
                     </button>
                   </Link>
-                  <Link>
-                    <button className="px-5 py-2 text-lg font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">
-                      PAY
-                    </button>
-                  </Link>
                 </div>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div>
+      {/* <div>
         <Map
           mapLib={import("mapbox-gl")}
           initialViewState={{
@@ -103,7 +106,7 @@ const MyParcels = () => {
           style={{ width: 600, height: 400 }}
           mapStyle="mapbox://styles/mapbox/streets-v9"
         />
-      </div>
+      </div> */}
     </div>
   );
 };

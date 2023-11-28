@@ -38,6 +38,7 @@ const Statistics = () => {
       xaxis: {
         categories: users.map((user) => user.bookingDate),
       },
+      colors: ["#FF5733"],
     },
   });
   return (
@@ -50,7 +51,7 @@ const Statistics = () => {
           <Lottie animationData={Ani} loop={true}></Lottie>
         </div>
       </div>
-      <div>
+      <div data-aos="zoom-out" data-aos-delay="100">
         <ReactApexChart
           options={state.options}
           series={state.series}

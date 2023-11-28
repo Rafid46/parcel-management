@@ -17,8 +17,9 @@ const AllUsers = () => {
       Swal.fire(`${user.name} is now an admin`);
     });
   };
+  const { _id } = users;
   const handleDeliveryMan = (user) => {
-    axiosSecure.patch(`/users/deliveryMan/${user._id}`).then((res) => {
+    axiosSecure.patch(`/users/deliveryMan/${_id}`).then((res) => {
       console.log(res);
       refetch();
       Swal.fire(`${user.name} is now an delivery man`);

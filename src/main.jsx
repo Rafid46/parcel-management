@@ -21,8 +21,8 @@ import MyParcels from "./Components/Dashboard/UserDashboard/MyParcels";
 import MyProfile from "../src/Components/Dashboard/UserDashboard/MyProfile";
 import AllParcels from "./Components/Dashboard/Admin/AllParcels";
 import AllDeliveryMan from "./Components/Dashboard/Admin/AllDeliveryMan";
-import UpdateProfile from "./Components/Dashboard/UserDashboard/UpdateProfile";
 import Statistics from "./Components/Dashboard/Admin/Statistics";
+import Payment from "./Components/Dashboard/UserDashboard/Payment";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
         path: "myProfile",
         element: <MyProfile></MyProfile>,
       },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
+      },
 
       // admin
       {
@@ -73,12 +77,6 @@ const router = createBrowserRouter([
         element: <Statistics></Statistics>,
       },
     ],
-  },
-  {
-    path: "/update/:id",
-    element: <UpdateProfile></UpdateProfile>,
-    // loader: ({ params }) =>
-    //   fetch(`http://localhost:5020/health/update/${params.id}`),
   },
 ]);
 

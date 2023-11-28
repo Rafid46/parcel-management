@@ -40,7 +40,9 @@ const AllParcels = () => {
       deliveryMan,
     };
     console.log(man);
-    axiosSecure.patch(`/bookParcel/${user._id}`, man).then((res) => {
+    const { _id } = users;
+    console.log(users);
+    axiosSecure.post(`/bookParcel/${_id}`, man).then((res) => {
       console.log(man.id);
       refetch();
       Swal.fire("delivery man added");
