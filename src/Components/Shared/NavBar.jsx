@@ -4,6 +4,8 @@ import logo from "../../assets/logo.png";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { FaRegUserCircle } from "react-icons/fa";
+import useUser from "../Hooks/useUser";
 const nextVariants = {
   hidden: {
     x: "-100vw",
@@ -29,6 +31,7 @@ const containerVariants = {
 };
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [prof] = useUser();
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -44,7 +47,7 @@ const NavBar = () => {
       transition={{ type: "spring", delay: 0.5 }}
     >
       <div className="">
-        <nav className="flex flex-col md:flex-row lg:flex-row items-center justify-between">
+        <nav className="flex flex-col md:flex-row lg:flex-row items-center justify-between font-poppins">
           <li className="text-xl mr-10 font-semibold text-[#02c39a]">
             <NavLink
               to="/"
@@ -55,16 +58,40 @@ const NavBar = () => {
               HOME
             </NavLink>
           </li>
-          <li className="text-xl mr-10 font-semibold text-[#02c39a]">
-            <NavLink
-              to="/dashboard/bookParcel"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "" : ""
-              }
-            >
-              DASHBOARD
-            </NavLink>
-          </li>
+          {prof?.role === "admin" ? (
+            <li className="text-xl mr-10 font-semibold text-[#02c39a]">
+              <NavLink
+                to="/dashboard/statistics"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "" : ""
+                }
+              >
+                DASHBOARD
+              </NavLink>
+            </li>
+          ) : prof?.role === "user" ? (
+            <li className="text-xl mr-10 font-semibold text-[#02c39a]">
+              <NavLink
+                to="/dashboard/bookParcel"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "" : ""
+                }
+              >
+                DASHBOARD
+              </NavLink>
+            </li>
+          ) : (
+            <li className="text-xl mr-10 font-semibold text-[#02c39a]">
+              <NavLink
+                to="/dashboard"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "" : ""
+                }
+              >
+                DASHBOARD
+              </NavLink>
+            </li>
+          )}
           <li className="text-3xl mr-10 font-semibold text-[#02c39a] transform transition-transform duration-300 hover:rotate-45">
             <NavLink
               to="/"
@@ -142,7 +169,16 @@ const NavBar = () => {
                 <summary tabIndex={0} className="btn btn-ghost rounded-btn">
                   <div className="avatar">
                     <div className="w-8 rounded-full ring ring-green-500 ring-offset-base-100 ring-offset-2">
-                      <img src={user?.photoURL} />
+                      {user?.photoURL ? (
+                        <img
+                          className="object-cover w-8 h-8 rounded-full"
+                          src={user?.photoURL}
+                        />
+                      ) : (
+                        <div className="text-3xl">
+                          <FaRegUserCircle />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </summary>

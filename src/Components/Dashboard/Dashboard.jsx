@@ -8,6 +8,7 @@ import { LuPackage } from "react-icons/lu";
 import { LuPackageOpen } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import useUser from "../Hooks/useUser";
+import { FaRegUserCircle } from "react-icons/fa";
 /* eslint-disable react/no-unknown-property */
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -205,11 +206,18 @@ const Dashboard = () => {
                 <div className="mt-6">
                   <div className="flex items-center justify-between mt-6">
                     <a className="flex items-center gap-x-2">
-                      <img
-                        className="object-cover rounded-full h-7 w-7"
-                        src={user?.photoURL}
-                        alt="avatar"
-                      />
+                      {user?.photoURL ? (
+                        <img
+                          className="object-cover rounded-full h-7 w-7"
+                          src={user?.photoURL}
+                          alt="avatar"
+                        />
+                      ) : (
+                        <div className="text-3xl">
+                          <FaRegUserCircle />
+                        </div>
+                      )}
+
                       <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
                         {user?.displayName}
                       </span>

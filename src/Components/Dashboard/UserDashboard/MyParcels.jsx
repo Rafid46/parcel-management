@@ -7,7 +7,7 @@ import Lottie from "lottie-react";
 import Ani from "../../../assets/F4g2o6WZSX.json";
 import { Link } from "react-router-dom";
 import { MdReviews } from "react-icons/md";
-import Map from "react-map-gl";
+import { IoIosArrowDroprightCircle } from "react-icons/io";
 const MyParcels = () => {
   //   const [data, setData] = useState([]);
   const axiosSecure = useAxiosSecure();
@@ -35,77 +35,90 @@ const MyParcels = () => {
           to="/dashboard/payment"
           className=" flex items-center justify-center mb-10"
         >
-          <button className="px-5 py-2 text-lg font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700">
-            PAY
+          <button className="px-5 w-[200px] py-2 text-lg font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700">
+            P A Y
           </button>
         </Link>
       ) : (
         <Link className="flex items-center justify-center mb-10">
           <button
             disabled
-            className="px-5 py-2 text-lg font-semibold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none"
+            className="px-5 py-2 text-lg font-semibold text-white uppercase transition-colors duration-300 transform bg-green-500 rounded hover:bg-gray-700 focus:outline-none"
           >
             PAY
           </button>
         </Link>
       )}
-      <div className="font-poppins grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {parcels.map((parcel) => (
-          <div className="flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center">
-              <div className="p-5 h-64 bg-gray-300 rounded-lg shadow-md">
-                <p className="pb-2 text xl text-gray-800 font-semibold">
-                  Requested delivery date:{" "}
-                  <span className="text-sm text-gray-400">
-                    {parcel.requestedDeliveryDate}
-                  </span>
-                </p>
-                <p className=" pb-2 text xl text-gray-800 font-semibold">
-                  Booking Date:{" "}
-                  <span className="text-sm text-gray-400">
-                    {parcel.bookingDate}
-                  </span>
-                </p>
-                <p className="pb-2 text xl text-gray-800 font-semibold">
-                  Delivery Men ID:{parcel.deliveryMan}
-                </p>
-                <p className="pb-2 text xl text-gray-800 font-semibold">
-                  Booking Status:{" "}
-                  <span className="text-white text-sm font-medium bg-green-500 rounded-lg p-1">
-                    {parcel.status}
-                  </span>
-                </p>
-                <Link>
-                  <div className="flex items-center justify-end">
-                    <button className="px-5 py-2 text-lg font-semibold text-blue-500 uppercase transition-colors duration-300 transform border-2 border-gray-800 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">
-                      <span>
-                        Review <MdReviews></MdReviews>
+
+      <div className="max-w-screen-3xl ml-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {parcels.map((parcel) => (
+            <div className="flex flex-col bg-gray-100 rounded-3xl w-[450px]">
+              <div className="sm:p-7">
+                <div className="grid items-center justify-center w-full grid-cols-1 text-left">
+                  <div>
+                    <h2 className="text-md tracking-tighter text-gray-600 font-semibold lg:text-xl">
+                      Requested delivery date:{" "}
+                      <span className="text-sm font-normal">
+                        {parcel.requestedDeliveryDate}
                       </span>
-                    </button>
+                    </h2>
+                    <p className="mt-2 text-sm font-semibold text-black">
+                      Booking date{" "}
+                      <span className="text-gray-500 font-normal">
+                        {parcel.bookingDate}
+                      </span>
+                    </p>
+                    <p className="mt-2 text-sm font-semibold">
+                      Status:{" "}
+                      <span className="text-white font-normal bg-green-400 p-2 rounded-md w-fit">
+                        {parcel.status}
+                      </span>
+                    </p>
+                    <p className="mt-2 text-sm  font-semibold">
+                      Delivery Men ID: {parcel.deliveryMan}
+                    </p>
+                  </div>
+                  <div className="mt-6">
+                    <div className="flex items-center">
+                      <span className="text-5xl font-light tracking-tight text-black">
+                        $ {parcel.price}
+                      </span>
+                      <span className="text-base font-medium text-gray-500 ml-5">
+                        <IoIosArrowDroprightCircle />
+                        {parcel.parcelType}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center justify-evenly pb-8">
+                <Link to={`/dashboard/update/${parcel._id}`}>
+                  <div className="w-[200px]">
+                    <a
+                      aria-describedby="tier-company"
+                      className="flex items-center justify-center px-6 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full  hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black"
+                    >
+                      Update
+                    </a>
+                  </div>
+                </Link>
+                <Link to={`/dashboard/update/${parcel._id}`}>
+                  <div className="w-[100px]">
+                    <a
+                      aria-describedby="tier-company"
+                      className="flex items-center justify-center  px-6 py-2.5 text-center text-black duration-200  border-2 border-black rounded-full  hover:bg-black hover:border-black hover:text-white focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black"
+                    >
+                      Review
+                    </a>
                   </div>
                 </Link>
               </div>
-
-              <div className="w-60 -mt-10 overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800">
-                <h3 className="py-2 font-bold tracking-wide text-center text-gray-800  dark:text-white">
-                  {parcel.parcelType}
-                </h3>
-
-                <div className="flex items-center justify-between px-3 py-2">
-                  <span className="font-bold text-[#02c39a]">
-                    $ {parcel.price}
-                  </span>
-                  <Link to="/dashboard/update">
-                    <button className="px-4 py-2 text-lg font-semibold text-white uppercase transition-colors duration-300 transform bg-blue-500 rounded hover:bg-gray-700 dark:hover:bg-gray-600 focus:bg-gray-700 dark:focus:bg-gray-600 focus:outline-none">
-                      Update
-                    </button>
-                  </Link>
-                </div>
-              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
       {/* <div>
         <Map
           mapLib={import("mapbox-gl")}

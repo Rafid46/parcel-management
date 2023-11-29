@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { FaRegUserCircle } from "react-icons/fa";
 
 /* eslint-disable react/no-unknown-property */
 const MyProfile = () => {
@@ -43,11 +44,17 @@ const MyProfile = () => {
       <div>
         <div className="w-full max-w-md px-8 py-4  bg-white rounded-lg shadow-lg dark:bg-gray-800">
           <div className="flex justify-center -mt-16 md:justify-end">
-            <img
-              className="object-cover w-28 h-28 border-2 border-blue-500 rounded-full dark:border-blue-400"
-              alt="Testimonial avatar"
-              src={list?.photoURL}
-            />
+            {user?.photoURL ? (
+              <img
+                className="object-cover w-28 h-28 border-2 border-blue-500 rounded-full dark:border-blue-400"
+                alt="Testimonial avatar"
+                src={list?.photoURL}
+              />
+            ) : (
+              <div className="text-3xl object-cover border-2 border-blue-500 rounded-full dark:border-blue-400">
+                <FaRegUserCircle />
+              </div>
+            )}
           </div>
 
           <h2 className="mt-2 text-xl font-semibold text-gray-800 dark:text-white md:mt-0">

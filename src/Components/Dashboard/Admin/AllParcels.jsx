@@ -21,8 +21,25 @@ const AllParcels = () => {
       return res.data.filter((user) => user.role === "deliveryMan");
     },
   });
+  //   assign on the way
   const handleAssign = (user) => {
-    axiosSecure.patch(`/bookParcel/onTheWay/${user._id}`).then((res) => {
+    axiosSecure.patch(`/bookParcel/${user._id}`).then((res) => {
+      refetch();
+      console.log(res);
+      Swal.fire("status updated");
+    });
+  };
+  //   assign deliver
+  const handleDeliver = (user) => {
+    axiosSecure.patch(`/bookParcel/deliver/${user._id}`).then((res) => {
+      refetch();
+      console.log(res);
+      Swal.fire("status updated");
+    });
+  };
+  //   assign deliver
+  const handleCancel = (user) => {
+    axiosSecure.patch(`/bookParcel/cancel/${user._id}`).then((res) => {
       refetch();
       console.log(res);
       Swal.fire("status updated");
@@ -37,9 +54,9 @@ const AllParcels = () => {
       deliveryMan,
     };
     console.log(man);
-    const { _id } = users;
+    // const { _id } = users;
     console.log(users);
-    axiosSecure.post(`/bookParcel/${_id}`, man).then((res) => {
+    axiosSecure.post("/bookParcel", man).then((res) => {
       console.log(man.id);
       refetch();
       Swal.fire("delivery man added");
@@ -48,8 +65,11 @@ const AllParcels = () => {
   };
   return (
     <div>
-      <div className="">
+      <div className="mt-10">
         <section className="container px-4 mx-auto mt-10 h-screen">
+          <p className="text-center text-4xl text-blue-900 font-bold mb-10">
+            All parcels
+          </p>
           <div className="flex flex-col">
             <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -222,9 +242,24 @@ const AllParcels = () => {
                           </td>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                             <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-blue-500 bg-emerald-100/60 dark:bg-gray-800">
-                              <button onClick={() => handleAssign(user)}>
-                                Assign
-                              </button>
+                              <details className="dropdown dropdown-left dropdown-end">
+                                <summary className="m-1 cursor-pointer">
+                                  Assign
+                                </summary>
+                                <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                                  <li>
+                                    <a onClick={() => handleAssign(user)}>
+                                      on the way
+                                    </a>
+                                  </li>
+                                  <li onClick={() => handleDeliver(user)}>
+                                    <a>delivered returned</a>
+                                  </li>
+                                  <li onClick={() => handleCancel(user)}>
+                                    <a>cancel</a>
+                                  </li>
+                                </ul>
+                              </details>
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">

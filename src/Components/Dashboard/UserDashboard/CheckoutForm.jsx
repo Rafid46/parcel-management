@@ -4,7 +4,25 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import ReactConfetti from "react-confetti";
 const CheckoutForm = () => {
+  const [confettiActive, setConfettiActive] = useState(false);
+  const [windowDimension, setWindowDimension] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  const detectSize = () => {
+    setWindowDimension({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowDimension]);
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -78,14 +96,22 @@ const CheckoutForm = () => {
           parcelId: parcels.map((item) => item._id),
           status: "pending",
         };
-        const res = await axiosSecure.post("/payments", payment);
+        const res = axiosSecure.post("/payments", payment);
         console.log("payment saved", res);
-        if (res.data?.paymentResult?.transactionId) {
-          refetch();
-          Swal.fire("SuccessFully Submitted");
+        if (res.data?.paymentResult?.insertedId) {
+          await refetch();
+          Swal.fire("paid successfully");
         }
       }
     }
+  };
+  const handleSwal = () => {
+    setConfettiActive(true), Swal.fire("paid successfully");
+    <ReactConfetti
+      width={windowDimension.width}
+      height={windowDimension.height}
+      tweenDuration={1000}
+    />;
   };
   return (
     <div className="max-w-screen-md  mx-auto">

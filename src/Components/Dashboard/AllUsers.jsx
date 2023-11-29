@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { FaRegUserCircle } from "react-icons/fa";
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
@@ -17,9 +18,9 @@ const AllUsers = () => {
       Swal.fire(`${user.name} is now an admin`);
     });
   };
-  const { _id } = users;
+  // const { _id } = users;
   const handleDeliveryMan = (user) => {
-    axiosSecure.patch(`/users/deliveryMan/${_id}`).then((res) => {
+    axiosSecure.patch(`/users/deliveryMan/${user._id}`).then((res) => {
       console.log(res);
       refetch();
       Swal.fire(`${user.name} is now an delivery man`);
@@ -27,6 +28,9 @@ const AllUsers = () => {
   };
   return (
     <div className="mt-10">
+      <p className="text-center text-4xl text-blue-900 font-bold mb-10">
+        All Users
+      </p>
       <div>
         <section className="container px-4 mx-auto h-screen">
           <div className="flex flex-col">
@@ -121,17 +125,22 @@ const AllUsers = () => {
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             <div className="flex items-center gap-x-2">
-                              <img
-                                className="object-cover w-8 h-8 rounded-full"
-                                src={user.photoURL}
-                                alt=""
-                              />
+                              {user?.photoURL ? (
+                                <img
+                                  className="object-cover w-8 h-8 rounded-full"
+                                  src={user?.photoURL}
+                                />
+                              ) : (
+                                <div className="text-3xl">
+                                  <FaRegUserCircle />
+                                </div>
+                              )}
                               <div>
                                 <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
-                                  {user.name}
+                                  {user?.name}
                                 </h2>
                                 <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                                  {user.email}
+                                  {user?.email}
                                 </p>
                               </div>
                             </div>

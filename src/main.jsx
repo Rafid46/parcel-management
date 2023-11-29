@@ -23,6 +23,7 @@ import AllParcels from "./Components/Dashboard/Admin/AllParcels";
 import AllDeliveryMan from "./Components/Dashboard/Admin/AllDeliveryMan";
 import Statistics from "./Components/Dashboard/Admin/Statistics";
 import Payment from "./Components/Dashboard/UserDashboard/Payment";
+import Update from "./Components/Dashboard/UserDashboard/Update";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         path: "payment",
         element: <Payment></Payment>,
       },
+      {
+        path: "update/:id",
+        element: <Update></Update>,
+      },
 
       // admin
       {
@@ -84,7 +89,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <div className="font-poppins">
+          <RouterProvider router={router} />
+        </div>
       </QueryClientProvider>
     </AuthProvider>
   </React.StrictMode>
