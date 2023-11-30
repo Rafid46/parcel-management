@@ -14,13 +14,13 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext);
   // const isAdmin = true;
   const [prof] = useUser();
-  console.log(prof);
+  // console.log(prof);
   return (
     <div className="flex">
       {prof?.role === "admin" ? (
         <>
           <div className="">
-            <aside className="flex h-full flex-col w-64 px-5 py-8 bg-gray-900">
+            <aside className="flex h-screen  flex-col w-64 px-5 py-8 bg-transparent text-gray-900">
               <a className="flex">
                 <img className="w-auto h-7 mr-5" src={logo} alt="" />
                 <p className="text-white font-bold font-poppins">SWIFT</p>
@@ -30,7 +30,7 @@ const Dashboard = () => {
                 <nav className="flex-1 -mx-3 space-y-3 ">
                   <NavLink
                     to="/"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ const Dashboard = () => {
 
                   <NavLink
                     to="/dashboard/allParcels"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                   >
                     <LuPackage />
                     <span className="mx-2 text-sm font-medium">
@@ -62,7 +62,7 @@ const Dashboard = () => {
 
                   <NavLink
                     to="/dashboard/allUsers"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@ const Dashboard = () => {
 
                   <NavLink
                     to="/dashboard/allDeliveryman"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                   >
                     <MdDeliveryDining />
                     <span className="mx-2 text-sm font-medium">
@@ -92,7 +92,7 @@ const Dashboard = () => {
                   </NavLink>
                   <NavLink
                     to="/dashboard/statistics"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                   >
                     <IoStatsChart />
 
@@ -108,7 +108,7 @@ const Dashboard = () => {
                         src={user?.photoURL}
                         alt="avatar"
                       />
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                      <span className="text-sm font-medium text-gray-900">
                         {user?.displayName}
                       </span>
                     </a>
@@ -152,7 +152,7 @@ const Dashboard = () => {
                 <nav className="flex-1 -mx-3 space-y-3 ">
                   <NavLink
                     to="/"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +174,7 @@ const Dashboard = () => {
 
                   <NavLink
                     to="/dashboard/bookParcel"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                   >
                     <LuPackageOpen />
 
@@ -185,7 +185,7 @@ const Dashboard = () => {
 
                   <NavLink
                     to="/dashboard/myParcels"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                   >
                     <LuPackage />
 
@@ -194,7 +194,7 @@ const Dashboard = () => {
 
                   <NavLink
                     to="/dashboard/myProfile"
-                    className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                   >
                     <CgProfile />
 
@@ -252,7 +252,7 @@ const Dashboard = () => {
         <>
           <NavLink
             to="/"
-            className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
+            className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg  hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -274,7 +274,7 @@ const Dashboard = () => {
 
           <NavLink
             to="/dashboard/bookParcel"
-            className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
           >
             <LuPackageOpen />
 
@@ -283,7 +283,7 @@ const Dashboard = () => {
 
           <NavLink
             to="/dashboard/myParcels"
-            className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
           >
             <LuPackage />
 
@@ -292,7 +292,7 @@ const Dashboard = () => {
 
           <NavLink
             to="/dashboard/myProfile"
-            className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+            className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
           >
             <CgProfile />
 
@@ -312,7 +312,7 @@ const Dashboard = () => {
               <nav className="flex-1 -mx-3 space-y-3 ">
                 <NavLink
                   to="/"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -334,7 +334,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/allParcels"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <LuPackage />
                   <span className="mx-2 text-sm font-medium">All Parcels</span>
@@ -342,7 +342,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/allUsers"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -363,7 +363,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/allDeliveryman"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <MdDeliveryDining />
                   <span className="mx-2 text-sm font-medium">
@@ -372,7 +372,7 @@ const Dashboard = () => {
                 </NavLink>
                 <NavLink
                   to="/dashboard/statistics"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <IoStatsChart />
 
@@ -422,7 +422,7 @@ const Dashboard = () => {
       ) : prof?.role === "user"? 
        <> <NavLink
                   to="/"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -444,7 +444,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/bookParcel"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <LuPackageOpen />
 
@@ -455,7 +455,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/myParcels"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <LuPackage />
 
@@ -464,7 +464,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/myProfile"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <CgProfile />
 
@@ -476,7 +476,7 @@ const Dashboard = () => {
       <>
           <NavLink
                   to="/"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 active:bg-slate-200"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -498,7 +498,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/bookParcel"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <LuPackageOpen />
 
@@ -509,7 +509,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/myParcels"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <LuPackage />
 
@@ -518,7 +518,7 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/myProfile"
-                  className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  className="flex items-center px-3 py-2 text-gray-900 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                 >
                   <CgProfile />
 

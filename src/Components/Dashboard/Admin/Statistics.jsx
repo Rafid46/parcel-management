@@ -19,7 +19,7 @@ const Statistics = () => {
   const [state, setState] = useState({
     series: [
       {
-        data: users.map((user) => user?.bookingDate),
+        data: users.map((user) => user.bookingDate),
       },
     ],
     options: {
@@ -37,9 +37,9 @@ const Statistics = () => {
         enabled: false,
       },
       xaxis: {
-        categories: users.map((user) => user?.bookingDate),
+        categories: users.map((user) => user.bookingDate),
       },
-      //   colors: ["#FF5733"],
+      colors: ["#FF5733", "#33FF57", "#5733FF", "#FFFF33", "#33FFFF"],
     },
   });
   return (
@@ -52,7 +52,7 @@ const Statistics = () => {
           <Lottie animationData={Ani} loop={true}></Lottie>
         </div>
       </div>
-      <div>
+      <div data-aos="zoom-out" data-aos-delay="100">
         <ReactApexChart
           options={state.options}
           series={state.series}

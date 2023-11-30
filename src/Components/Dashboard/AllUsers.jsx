@@ -27,7 +27,7 @@ const AllUsers = () => {
     });
   };
   return (
-    <div className="mt-10">
+    <div className="mt-10 h-full">
       <p className="text-center text-4xl text-blue-900 font-bold mb-10">
         All Users
       </p>

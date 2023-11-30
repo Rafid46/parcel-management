@@ -122,7 +122,7 @@ const Register = () => {
                     </span>
                   </Link>
                 </p>
-                <button className="mt-5 bg-white flex items-center text-gray-700 dark:text-gray-900 justify-center gap-x-3 text-sm sm:text-base  dark:bg-white dark:border-gray-700 dark:hover:bg-gray-200 rounded-lg hover:bg-gray-100 duration-300 transition-colors px-8 py-2.5">
+                {/* <button className="mt-5 bg-white flex items-center text-gray-700 dark:text-gray-900 justify-center gap-x-3 text-sm sm:text-base  dark:bg-white dark:border-gray-700 dark:hover:bg-gray-200 rounded-lg hover:bg-gray-100 duration-300 transition-colors px-8 py-2.5">
                   <svg
                     className="w-5 h-5 sm:h-6 sm:w-6"
                     viewBox="0 0 24 24"
@@ -154,7 +154,7 @@ const Register = () => {
                     </defs>
                   </svg>
                   <span>Sign in with Google</span>
-                </button>
+                </button> */}
               </form>
             </div>
           </main>

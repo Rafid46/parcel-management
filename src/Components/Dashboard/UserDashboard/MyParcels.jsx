@@ -8,6 +8,8 @@ import Ani from "../../../assets/F4g2o6WZSX.json";
 import { Link } from "react-router-dom";
 import { MdReviews } from "react-icons/md";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { useForm } from "react-hook-form";
+import { FaRegUserCircle } from "react-icons/fa";
 const MyParcels = () => {
   //   const [data, setData] = useState([]);
   const axiosSecure = useAxiosSecure();
@@ -20,6 +22,12 @@ const MyParcels = () => {
     },
   });
   console.log(parcels);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   return (
     <div className="h-screen">
       <div className="flex items-center justify-center">
@@ -57,19 +65,19 @@ const MyParcels = () => {
               <div className="sm:p-7">
                 <div className="grid items-center justify-center w-full grid-cols-1 text-left">
                   <div>
-                    <h2 className="text-md tracking-tighter text-gray-600 font-semibold lg:text-xl">
+                    <h2 className="text-md tracking-tighter text-gray-600 font-semibold lg:text-xl mb-5">
                       Requested delivery date:{" "}
                       <span className="text-sm font-normal">
                         {parcel.requestedDeliveryDate}
                       </span>
                     </h2>
-                    <p className="mt-2 text-sm font-semibold text-black">
+                    <p className="mt-2 text-sm font-semibold text-black mb-5">
                       Booking date{" "}
                       <span className="text-gray-500 font-normal">
                         {parcel.bookingDate}
                       </span>
                     </p>
-                    <p className="mt-2 text-sm font-semibold">
+                    <p className="mt-2 text-sm font-semibold mb-5">
                       Status:{" "}
                       <span className="text-white font-normal bg-green-400 p-2 rounded-md w-fit">
                         {parcel.status}
@@ -103,9 +111,12 @@ const MyParcels = () => {
                     </a>
                   </div>
                 </Link>
-                <Link to={`/dashboard/update/${parcel._id}`}>
+                <Link>
                   <div className="w-[100px]">
                     <a
+                      onClick={() =>
+                        document.getElementById("my_modal_1").showModal()
+                      }
                       aria-describedby="tier-company"
                       className="flex items-center justify-center  px-6 py-2.5 text-center text-black duration-200  border-2 border-black rounded-full  hover:bg-black hover:border-black hover:text-white focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black"
                     >
@@ -113,6 +124,80 @@ const MyParcels = () => {
                     </a>
                   </div>
                 </Link>
+                {/* Open the modal using document.getElementById('ID').showModal() method */}
+                <dialog id="my_modal_1" className="modal">
+                  <div className="modal-box">
+                    <form action="">
+                      <div>
+                        {user?.photoURL ? (
+                          <img
+                            className="object-cover w-28 h-28"
+                            alt="Testimonial avatar"
+                            src={user?.photoURL}
+                            {...register("photoURL")}
+                          />
+                        ) : (
+                          <div className="text-3xl object-cover">
+                            <FaRegUserCircle />
+                          </div>
+                        )}
+                        <div className="col-span-6 w-96 sm:col-span-3">
+                          <label
+                            htmlFor="LastName"
+                            className="block text-sm font-medium text-gray-500"
+                          >
+                            Email
+                          </label>
+
+                          <input
+                            data-aos="zoom-out"
+                            data-aos-delay="200"
+                            type="text"
+                            id="LastName"
+                            {...register("email")}
+                            placeholder={user.email}
+                            value={user.email}
+                            readOnly
+                            className="mt-1 w-full rounded-md border-gray-400 bg-white text-sm text-gray-500 shadow-sm"
+                          />
+                        </div>
+                        <div>
+                          <textarea
+                            id="OrderNotes"
+                            className="mt-2 w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm"
+                            rows="4"
+                            placeholder="Enter any additional order notes..."
+                          ></textarea>
+                          <p className="mt-2 text-sm  font-semibold">
+                            Delivery Men ID: {parcel.deliveryMan}
+                          </p>
+                        </div>
+
+                        <div>
+                          <input
+                            type="number"
+                            {...register("rating")}
+                            id="UserEmail"
+                            placeholder="rating"
+                            className="mt-1 w-1/2 rounded-md border-gray-200 shadow-sm sm:text-sm"
+                          />
+                        </div>
+                        <div className="modal-action">
+                          <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <a
+                              aria-describedby="tier-company"
+                              className="mr-5 px-6 py-2.5 text-center text-black duration-200  border-2 border-black rounded-full  hover:bg-black hover:border-black hover:text-white focus:outline-none focus-visible:outline-black text-sm focus-visible:ring-black"
+                            >
+                              Review
+                            </a>
+                            <button className="btn">Close</button>
+                          </form>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </dialog>
               </div>
             </div>
           ))}

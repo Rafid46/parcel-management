@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const axiosPublic = axios.create({ baseURL: "http://localhost:5020/health" });
+const axiosPublic = axios.create({
+  baseURL: "https://parcel-management-server-zeta.vercel.app/health",
+});
 const useAxiosPublic = () => {
   return axiosPublic;
 };

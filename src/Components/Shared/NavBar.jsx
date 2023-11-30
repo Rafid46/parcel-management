@@ -189,9 +189,11 @@ const NavBar = () => {
                   <li>
                     <a className="cursor-not-allowed">{user?.displayName}</a>
                   </li>
-                  <li>
-                    <a>Dashboard</a>
-                  </li>
+                  <Link to="/dashboard/bookParcel">
+                    <li>
+                      <a>Dashboard</a>
+                    </li>
+                  </Link>
                   <li>
                     <button onClick={handleLogOut}>Logout</button>
                   </li>

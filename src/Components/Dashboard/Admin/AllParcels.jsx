@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { MdOutlineSystemUpdate } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const AllParcels = () => {
   const axiosSecure = useAxiosSecure();
-
+  const [form, setForm] = useState("");
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -46,23 +47,34 @@ const AllParcels = () => {
     });
   };
   // update
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const deliveryMan = form.deliveryMan.value;
+  //   const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     const form = e.target;
+  //     const deliveryMan = form.deliveryMan.value;
+  //     const man = {
+  //       deliveryMan,
+  //     };
+  //     console.log(man);
+  //     // const { _id } = users;
+  //     console.log(users);
+  //     axiosSecure.post("/bookParcel", man).then((res) => {
+  //       console.log(man.id);
+  //       refetch();
+  //       Swal.fire("delivery man added");
+  //       console.log(res, "user added");
+  //     });
+  //   };
+  const handleUpdate = (user) => {
     const man = {
-      deliveryMan,
+      deliveryMan: form,
     };
     console.log(man);
-    // const { _id } = users;
-    console.log(users);
-    axiosSecure.post("/bookParcel", man).then((res) => {
-      console.log(man.id);
-      refetch();
-      Swal.fire("delivery man added");
-      console.log(res, "user added");
+    axiosSecure.patch(`/users/deliUpdate/${user._id}`, man).then((res) => {
+      console.log(res);
+      Swal.fire("status updated");
     });
   };
+
   return (
     <div>
       <div className="mt-10">
@@ -214,8 +226,11 @@ const AllParcels = () => {
                                     <label className="mb-5">
                                       Select Delivery Man:
                                     </label>
-                                    <form onSubmit={handleSubmit}>
+                                    <form>
                                       <select
+                                        onChange={(e) =>
+                                          setForm(e.target.value)
+                                        }
                                         className="px-5 py-2 mr-5 w-[300px] rounded-full"
                                         name="deliveryMan"
                                       >
@@ -227,7 +242,12 @@ const AllParcels = () => {
                                         ))}
                                       </select>
 
-                                      <button className="btn">Update</button>
+                                      <button
+                                        onClick={() => handleUpdate(user)}
+                                        className="btn"
+                                      >
+                                        Update
+                                      </button>
                                     </form>
                                   </div>
                                 </div>
